@@ -1,0 +1,8 @@
+
+<h1>{{itemsCount}}</h1>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-5 mb-5">
+    <div class="col" *ngFor='let card of cardsData'>
+        <app-card [dataFromParent]=card  (myEvent)="receivedItem()"></app-card>
+    </div>
+</div>

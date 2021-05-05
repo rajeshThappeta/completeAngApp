@@ -1,0 +1,167 @@
+<h2 class="display-6 text-info text-center">Register here</h2>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <!-- create registrration form -->
+        <form #ref="ngForm" (ngSubmit)="addUser(ref.value)">
+
+            <!-- username -->
+            <div>
+                <label for="un">Username</label>
+                <input type="text" name="username" id="un" class="form-control" ngModel>
+            </div>
+            <!-- email -->
+            <div>
+                <label for="em">Email</label>
+                <input type="email" name="email" id="em" class="form-control" ngModel>
+            </div>
+            <!-- city -->
+            <div>
+                <label for="ct">City</label>
+                <input type="text" name="city" id="ct" class="form-control" ngModel>
+            </div>
+
+            <button class="btn btn-success d-block mx-auto mt-4">Add user</button>
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+
+ <div class="text-center mt-5">
+    <h1 class="text-primary">List of users</h1>
+
+    <div *ngIf="users.length!=0">
+        <table class="table ">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>City</th>
+            </tr>
+            <tbody>
+                <tr *ngFor="let userObj of users;let ind=index">
+
+
+                    <td>
+                        <span *ngIf="!userEditStatus||editUserIndex!==ind"> {{userObj.username}}</span>
+
+                        <input type="text" [(ngModel)]="editUserObj.username" *ngIf="userEditStatus&&editUserIndex==ind">
+
+                    </td>
+                    <td>
+                        <span *ngIf="!userEditStatus||editUserIndex!==ind"> {{userObj.email}}</span>
+
+                        <input type="email" [(ngModel)]="editUserObj.email" *ngIf="userEditStatus&&editUserIndex==ind">
+
+                    </td>
+                    <td>
+                        <span *ngIf="!userEditStatus||editUserIndex!==ind"> {{userObj.city}}
+                            <button class="btn btn-sm btn-danger" (click)="deleteUser(ind)">X</button>
+                            <button class="btn btn-sm btn-warning ms-2" (click)="editUser(userObj,ind)">Edit</button>
+                        </span>
+
+                        <span *ngIf="userEditStatus&&editUserIndex==ind">
+                            <input type="text" [(ngModel)]="editUserObj.city">
+                            <button class="btn btn-success" (click)="saveUser(ind)">Save</button>
+                        </span>
+
+
+
+
+                    </td>
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="users.length==0">
+        <h4 class="text-danger mt-5">No User existed</h4>
+    </div>
+</div> 
+
+
+
+
+
+
+<!-- <div class="text-center mt-5">
+    <h1 class="text-primary">List of users</h1>
+
+    <div *ngIf="users.length!=0">
+        <table class="table ">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>City</th>
+            </tr>
+            <tbody>
+                <tr *ngFor="let userObj of users;let ind=index">
+
+
+                    <td>
+                        {{userObj.username}}
+
+                    </td>
+                    <td>
+                        {{userObj.email}}
+
+                    </td>
+                    <td>
+                        {{userObj.city}}
+                        <button class="btn btn-sm btn-danger" (click)="deleteUser(ind)">X</button>
+                        <button class="btn btn-sm btn-warning ms-2" (click)="editUser(userObj,ind)">Edit</button>
+
+
+
+
+
+
+
+                    </td>
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="users.length==0">
+        <h4 class="text-danger mt-5">No User existed</h4>
+    </div>
+</div> -->
+
+
+
+
+<!-- user edit form -->
+<div *ngIf="userEditStatus">
+    <h2 class="display-6 text-info text-center">Edit user data here</h2>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <!-- create registrration form -->
+            <form #ref="ngForm" (ngSubmit)="saveUser(ref.value)">
+
+                <!-- username -->
+                <div>
+                    <label for="un">Username</label>
+                    <input type="text" name="username" id="un" class="form-control" [ngModel]="editUserObj.username" ngModel>
+                </div>
+                <!-- email -->
+                <div>
+                    <label for="em">Email</label>
+                    <input type="email" name="email" id="em" class="form-control" [ngModel]="editUserObj.email" ngModel>
+                </div>
+                <!-- city -->
+                <div>
+                    <label for="ct">City</label>
+                    <input type="text" name="city" id="ct" class="form-control" [(ngModel)]="editUserObj.city" ngModel>
+                </div>
+
+                <button class="btn btn-success d-block mx-auto mt-4">Save user</button>
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>

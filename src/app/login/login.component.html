@@ -1,0 +1,27 @@
+<h2 class="display-6 text-success text-center">Login here</h2>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <form #ref="ngForm" (ngSubmit)="ref.form.valid && logInUser(ref.value)">
+
+
+            <input type="text" name="username" placeholder="Username" class="form-control mt-3 mb-4" ngModel required
+                #refName="ngModel">
+            <p class="text-danger" *ngIf="(ref.submitted ||refName.touched)&&refName.errors?.required">*Username is
+                required</p>
+
+            <input type="text" name="password" placeholder="Password" class="form-control mb-4" ngModel required
+                pattern="\d\d\d-\d\d.*" #refPassword="ngModel">
+
+            <p class="text-danger" *ngIf="(ref.submitted || refPassword.touched)&&refPassword.errors?.required">
+                *Password is required
+            </p>
+            <p class="text-danger" *ngIf="(ref.submitted || refPassword.touched)&&refPassword.errors?.pattern">
+                *pattern is not matched
+            </p>
+
+            <button type="submit" class="btn btn-info">Login</button>
+        </form>
+    </div>
+    <div class="col-sm-2"></div>
+</div>

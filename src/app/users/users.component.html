@@ -1,0 +1,13 @@
+<table class="table">
+    <thead>
+        <th>Id</th>
+        <th>Username</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>
+               <a routerLink=" " class="btn btn-light" (click)="getUsersData(user.id)">{{user.id}}</a> </td>
+            <td>{{user.username | lowercase}}</td>
+        </tr>
+    </tbody>
+</table>

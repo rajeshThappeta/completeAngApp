@@ -1,0 +1,16 @@
+<input type="text"  id="" placeholder="search by name" class="form-control" [(ngModel)]="searchTerm">
+
+<table class="table table-striped">
+    <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let comment of comments | search : searchTerm">
+            <td>{{comment.id}}</td>
+            <td>{{comment.name}}</td>
+            <td>{{comment.email}}</td>
+        </tr>
+    </tbody>
+</table>
